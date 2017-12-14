@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="gb2312"?>
+<DCOptions>
+	<Port>5678</Port>
+	<WebPort>5679</WebPort>
+	<Database>
+		<IP>192.168.1.117</IP>
+		<UserID>root</UserID>
+		<Password>123456</Password>
+		<ServiceName>EV19</ServiceName>
+		<Port>3306</Port>
+		<ConnNum>1</ConnNum>
+	</Database>
+	<RmqHostName>192.168.1.192</RmqHostName>
+	<RmqPort>5672</RmqPort>
+	<RmqUser>admin</RmqUser>
+	<RmqPasswd>admin</RmqPasswd>
+	<RmqExchanage>pubex</RmqExchanage>
+	<RmqQueueName>vehicledatadealque</RmqQueueName>
+</DCOptions>

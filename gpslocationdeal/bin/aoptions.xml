@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="gb2312"?>
+<AgentOptions>
+	<ChildInPoolCount>1</ChildInPoolCount>
+	<RmqServer>
+	        <IP>122.112.207.200</IP>
+		<Port>5672</Port>
+		<User>admin</User>
+		<Passwd>admin</Passwd>
+		<ConSumeExchange>pubex</ConSumeExchange>
+		<RespExchange>respex</RespExchange>
+		<QueueName>gpslocationdeal</QueueName>
+		<ConsumeIntervalTime>1000</ConsumeIntervalTime>
+    </RmqServer>
+	<Database>
+		<IP>192.168.1.50</IP>
+		<UserID>root</UserID>
+		<Password>!YIZGsc4</Password>
+		<ServiceName>EV19</ServiceName>
+		<Port>3306</Port>
+		<ConnNum>1</ConnNum>
+	</Database>
+</AgentOptions>
