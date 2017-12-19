@@ -15,6 +15,7 @@
 #include<string> 
 #include "DBAccess.h"
 #include "zmq.hpp"
+#include "Tool.h"
 
 
 #include<unistd.h>
@@ -56,7 +57,6 @@ public:
 	int SavePicNumInfo(const char *FileName,char *PlateNumbuf);
 	bool MsgEscape(char *srcData,int len,char *destData,unsigned int &flag ,int mode);
 	char check(char *src,int len);
-	vector<string> split(char *src,char *delimiters);
 private:
 	SYSTEMTIME      stCurrent;       
 	const bool*		m_pIsExit;		

@@ -551,15 +551,36 @@ int sendExitSignal(const char* szAppName)
 	}
 }
 
-vector<string> split(char *src,char *delimiters)
+vector<string> split(char *src,char delimiters)
 {
 	vector<string> vec;
-	char *p;
-	p = strtok (src,delimiters); 
-	while(p!=NULL) 
-	{ 
-		vec.push_back(p);
-		p = strtok(NULL,delimiters); 
+	char *p ,*ptmp;
+	p = src; 
+	ptmp = src;
+	while((*p)!='\0') 
+	{
+		if (*p == delimiters)
+		{
+			
+			
+			string tmp(ptmp,p);
+			vec.push_back(tmp);
+			
+			ptmp = p+1;
+			
+			if (*ptmp == delimiters)
+			{
+				vec.push_back(",");
+				ptmp++;
+				p++;
+			}
+			p++;
+		}
+		else
+		{
+			p++;
+		}
+		
 	} 
 	return vec;
 }

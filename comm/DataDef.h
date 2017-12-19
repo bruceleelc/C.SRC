@@ -83,7 +83,6 @@ typedef unsigned short      WORD;
 
 #define DEV_Q005_024_01	    0x1102		//过车记录
 #define DATA_STU_GPS_LOCATION	0x3101		//GPS位置数据
-#define DATA_STU_GPS_LOCATION_NUM	0x3104		//GPS位置数据
 #define DATA_STU_GPS_ALARM		0x3102      //GPS报警数据
 #define DATA_STU_DEV_STATUS		0x3103		//设备状态数据
 

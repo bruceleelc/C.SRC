@@ -82,18 +82,6 @@ char RecogizerSocket::check(char *src,int len)
 	return tmp;
 }
 
-vector<string> RecogizerSocket::split(char *src,char *delimiters)
-{
-	vector<string> vec;
-	char *p;
-	p = strtok (src,delimiters); 
-	while(p!=NULL) 
-	{ 
-		vec.push_back(p);
-		p = strtok(NULL,delimiters); 
-	} 
-	return vec;
-}
 
 
 int RecogizerSocket::AutoConfSocket( void )
@@ -382,7 +370,7 @@ int RecogizerSocket::StartWork( void )
 			memcpy(tmpMsg,recvRealMsg,len);
 			zlog_debug(g_server_cat,"recvRealMsg[%d]:",flag);
 			hzlog_debug(g_server_cat,recvRealMsg,flag);
-			vector<string> vec = split(tmpMsg,",");
+			vector<string> vec = split(tmpMsg,',');
 			
 
 			int vecsize = vec.size();
@@ -442,7 +430,8 @@ int RecogizerSocket::StartWork( void )
 					}
 					else if(0 == strcmp(vec[0].c_str(),"514"))
 					{
-						header.wMsgType = DATA_STU_GPS_LOCATION_NUM;
+						header.wMsgType = DATA_STU_GPS_LOCATION;
+						
 					}
 					else if(0 == strcmp(vec[0].c_str(),"2"))
 					{

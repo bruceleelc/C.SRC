@@ -188,7 +188,7 @@ int sendExitSignal(pid_t pid);
  */
 int sendExitSignal(const char* szAppName);
 
-vector<string> split(char *src,char *delimiters);
+vector<string> split(char *src,char delimiters);
 /*
  * 获取程序当前路径
  * @szBuff 路径缓冲
