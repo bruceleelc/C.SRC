@@ -219,12 +219,6 @@ typedef struct tagCheckPack{
 	char	szWords[10];				//包体内容
 }CheckPack;
 
-//服务器返回统一结构
-typedef struct tagSvrRep{
-	unsigned char ucResult;			//执行结果
-	DWORD		  dwError;				//错误编号
-	char*		  pDescrip;			//错误描述
-}SvrRep;
 
 //用与RTDateserver 统计每天过车数量
 typedef struct RTStationPicNum
