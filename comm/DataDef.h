@@ -34,7 +34,6 @@
 #include <sys/sysinfo.h>
 #define MAX_PATH	 1024
 typedef long long				__int64;
-typedef unsigned long       DWORD;
 typedef int                 BOOL;
 typedef unsigned char       BYTE;
 typedef unsigned short      WORD;
