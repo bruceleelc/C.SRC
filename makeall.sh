@@ -37,3 +37,4 @@ cp bin/* /home/abk/studentgpslocationdeal/
 cd /home/svn/C.SRC/
 cp killall.sh /home/abk/
 cp startall.sh /home/abk
+cp -r lib /home/abk/
