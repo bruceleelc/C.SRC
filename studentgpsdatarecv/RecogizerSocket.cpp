@@ -443,7 +443,7 @@ int RecogizerSocket::StartWork( void )
 					{
 						header.wMsgType = DATA_STU_GPS_LOCATION;
 						int msgNum = atoi(vec[2].c_str());
-						for (int i = 0,j=3,k=3;i<msgNum,j<vec.size(),k<vec.size();i++,j++)
+						for (int m = 0,j=3,k=3;m<msgNum,j<vec.size(),k<vec.size();m++,j++)
 						{
 							j+=6;
 							if("1" == vec[j])
@@ -451,9 +451,10 @@ int RecogizerSocket::StartWork( void )
 								j+=5;
 								char *msgTmp = new char[sendlen];
 								memset(msgTmp,0x0,sendlen);
-								for(int i=0;k<=j;k++)
+								int i=0;
+								for(;k<=j;k++)
 								{
-									if(0 == strcmp(vec[k].c_str(),",")
+									if("," == vec[k])
 									{
 										continue;
 									}
@@ -478,9 +479,10 @@ int RecogizerSocket::StartWork( void )
 								j+=6;
 								char *msgTmp = new char[sendlen];
 								memset(msgTmp,0x0,sendlen);
-								for(int i=0;k<=j;k++)
+								int i=0;
+								for(;k<=j;k++)
 								{
-									if(0 == strcmp(vec[k].c_str(),",")
+									if("," == vec[k])
 									{
 										continue;
 									}
@@ -513,9 +515,10 @@ int RecogizerSocket::StartWork( void )
 								}
 								char *msgTmp = new char[sendlen];
 								memset(msgTmp,0x0,sendlen);
-								for(int i=0;k<=j;k++)
+								int i=0;
+								for(;k<=j;k++)
 								{
-									if(0 == strcmp(vec[k].c_str(),",")
+									if("," == vec[k])
 									{
 										continue;
 									}
