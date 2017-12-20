@@ -1,11 +1,17 @@
 #!/bin/sh
 
-cd /home/svn/C.SRC/devstatusdeal/bin
+cd /home/abk/devstatusdeal/
 ./start_devstatusdeal.sh
-cd /home/svn/C.SRC/gpsalarmdeal/bin
+cd /home/abk/gpsalarmdeal/
 ./start_gpsalarmdeal.sh
-cd /home/svn/C.SRC/gpsdata/bin
+cd /home/abk/gpsdata/
 ./start_GPSDataRecvier.sh
-cd /home/svn/C.SRC/gpslocationdeal/bin
+cd /home/abk/gpslocationdeal/bin
 ./start_gpslocationdeal.sh
+cd /home/abk/studentdevstatusdeal/
+./start_studentdevstatusdeal.sh
+cd /home/abk/studentgpsdatarecv/
+./start_studentgpsdatarecv.sh
+cd /home/abk/studentgpslocationdeal/
+./start_studentgpslocationdeal.sh
 
