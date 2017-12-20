@@ -198,7 +198,7 @@ int main (int argc, char *argv[], char *envp[])
 
 	szFileName[nIndex] = 0;
 
-    strncat(szFileName, "gpslocationdeal_log.conf", 260);
+    strncat(szFileName, "studentgpslocationdeal_log.conf", 260);
     int ret = zlog_init(szFileName);	
   	if (ret != 0) 
 	{
