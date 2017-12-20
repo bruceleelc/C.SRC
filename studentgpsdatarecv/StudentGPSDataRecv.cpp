@@ -4,8 +4,7 @@
 #include "RecogizerSocket.h"
 #include "Configure.h"
 #include "Tool.h"
-#include "DataDef.h"			
-#include "Assistant.h"				
+#include "DataDef.h"				
 #include "zlog.h"
 #include<list>
 #include "zmq.hpp"
