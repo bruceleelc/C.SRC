@@ -15,7 +15,6 @@
 #include "zlog.h"
 #include "DataDef.h"
 
-#define PACKET_FLAG         0x5aa5
 #define NODE_PROCESS_REQ    0x04
 #define NODE_DEVICE_REQ     0x05
 #define NODE_STATINFO_REQ 0x06

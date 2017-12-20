@@ -57,8 +57,6 @@ void SystemTime2Time_T(LPSYSTEMTIME pSysTime,time_t* pTime);
 unsigned long  GetTickCount(void);
 
 #endif
-//typedef long long				__int64;
-typedef unsigned long       DWORD;
 typedef int                 BOOL;
 typedef unsigned char       BYTE;
 typedef unsigned short      WORD;
@@ -169,7 +167,6 @@ modify by zdx  2012-06-20
 
 #define PACKET_FLAG			0xC3E7C3E7		//固定包头标志
 
-#define PROTOCOL_VERSION	0x0100			//协议版本
 
 #pragma pack(1)							
 //网络通讯包包头
