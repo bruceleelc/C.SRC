@@ -385,7 +385,7 @@ int RecogizerSocket::StartWork( void )
 			char tmp = check(recvRealMsg,flag-strlen(vec[vecsize-1].c_str()));
 			recvRealMsg[sendlen] = 0x0;
 			sprintf(code,"%d",tmp);
-			if (0 != strcmp(code,vec[vecsize-1].c_str()))
+			if (code == vec[vecsize-1])
 			{
 				zlog_warn(g_server_cat,"code check error:code = %s,src code = %s",code,vec[vecsize-1].c_str());
 			}
@@ -393,7 +393,7 @@ int RecogizerSocket::StartWork( void )
 			{
 				zlog_info(g_server_cat,"code check success,code = %s!",code);
 				
-				if (0 == strcmp(vec[0].c_str(),"258"))
+				if ("258" == vec[0])
 				{
 					if(3 > vecsize)
 					{
@@ -426,7 +426,7 @@ int RecogizerSocket::StartWork( void )
 				}
 				else
 				{
-					if(0 == strcmp(vec[0].c_str(),"512"))
+					if("512" == vec[0])
 					{
 						header.wMsgType = DATA_STU_GPS_LOCATION;
 						
@@ -439,14 +439,14 @@ int RecogizerSocket::StartWork( void )
 						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,recvRealMsg+vec[0].size()+vec[1].size()+2,sendlen);
 						rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
 					}
-					else if(0 == strcmp(vec[0].c_str(),"514"))
+					else if("514" == vec[0])
 					{
 						header.wMsgType = DATA_STU_GPS_LOCATION;
 						int msgNum = atoi(vec[2].c_str());
 						for (int i = 0,j=3,k=3;i<msgNum,j<vec.size(),k<vec.size();i++,j++)
 						{
 							j+=6;
-							if(0 == strcmp(vec[j].c_str(),"1")
+							if("1" == vec[j])
 							{
 								j+=5;
 								char *msgTmp = new char[sendlen];
@@ -473,7 +473,7 @@ int RecogizerSocket::StartWork( void )
 								rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
 								delete []msgTmp;
 							}
-							else if(0 == strcmp(vec[j].c_str(),"2")
+							else if("2" == vec[j])
 							{
 								j+=6;
 								char *msgTmp = new char[sendlen];
@@ -500,10 +500,10 @@ int RecogizerSocket::StartWork( void )
 								rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
 								delete []msgTmp;
 							}
-							else if(0 == strcmp(vec[j].c_str(),"3")
+							else if("3" == vec[j])
 							{
 								j+=2;
-								if(0 == strcmp(vec[j].c_str(),"0")
+								if("0" == vec[j])
 								{
 									j+=6;
 								}
@@ -539,7 +539,7 @@ int RecogizerSocket::StartWork( void )
 						
 						
 					}
-					else if(0 == strcmp(vec[0].c_str(),"2"))
+					else if("2" == vec[0])
 					{
 						header.wMsgType = DATA_STU_DEV_STATUS;
 						zmq_msg_t msg;
