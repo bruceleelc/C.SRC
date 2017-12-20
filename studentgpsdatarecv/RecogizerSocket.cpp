@@ -381,7 +381,7 @@ int RecogizerSocket::StartWork( void )
 			zlog_debug(g_server_cat,"vecsize=%d",vecsize);
 			char code[10] = {0};
 
-			int sendlen = flag-strlen(vec[vecsize-1].c_str())-1;
+			int sendlen = flag-vec[vecsize-1].size()-3-vec[0].size()-vec[1].size();
 			char tmp = check(recvRealMsg,flag-strlen(vec[vecsize-1].c_str()));
 			recvRealMsg[sendlen] = 0x0;
 			sprintf(code,"%d",tmp);
@@ -429,13 +429,14 @@ int RecogizerSocket::StartWork( void )
 					if(0 == strcmp(vec[0].c_str(),"512"))
 					{
 						header.wMsgType = DATA_STU_GPS_LOCATION;
+						
 						zmq_msg_t msg;
 						
-						int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
+						int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+sendlen);
 						memcpy((char *)zmq_msg_data(&msg),&header,sizeof(header));
 						memcpy((char *)zmq_msg_data(&msg)+sizeof(header),header.szImei,strlen(header.szImei));
 						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei),",",1);
-						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,msgTmp,strlen(msgTmp));
+						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,recvRealMsg+vec[0].size()+vec[1].size()+2,sendlen);
 						rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
 					}
 					else if(0 == strcmp(vec[0].c_str(),"514"))
@@ -543,11 +544,11 @@ int RecogizerSocket::StartWork( void )
 						header.wMsgType = DATA_STU_DEV_STATUS;
 						zmq_msg_t msg;
 						
-						int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
+						int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+sendlen);
 						memcpy((char *)zmq_msg_data(&msg),&header,sizeof(header));
 						memcpy((char *)zmq_msg_data(&msg)+sizeof(header),header.szImei,strlen(header.szImei));
 						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei),",",1);
-						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,msgTmp,strlen(msgTmp));
+						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,recvRealMsg+vec[0].size()+vec[1].size()+2,sendlen);
 						rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
 					}
 					
