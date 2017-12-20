@@ -299,7 +299,7 @@ bool DBAccess::DevStatusInsertDB( void* pData )
 		zlog_error(g_server_cat,"pData NULL !");
 		return true;
 	}
-	vector<string> vec = split(pData,',');
+	vector<string> vec = split((char *)pData,',');
 	time_t t;
 	t = atol(vec[1].c_str());
 	struct tm *p;
