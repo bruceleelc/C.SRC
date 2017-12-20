@@ -14,7 +14,6 @@
 #include <amqp_framing.h>
 #include "utils.h"
 #include <stdlib.h>
-#include "Assistant.h"
 #define MAX_PATH 1024
 
 bool		g_isExit1;							
