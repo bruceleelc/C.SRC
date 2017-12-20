@@ -257,7 +257,7 @@ bool DBAccess::GpsInsertDB( void* pData )
 	}
 	else if (vec[7] == "3")
 	{
-		if (vec[9] == 0)
+		if (vec[9] == "0")
 		{
 			if (15 > vec.size())
 			{
