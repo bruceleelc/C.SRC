@@ -129,7 +129,6 @@ int RecogizerSocket::StartWork( void )
 	tv.tv_usec = 10000; 
 	while (!(*m_pIsExit))
 	{
-		zlog_debug(g_server_cat,"=============================");
 		pollitem.revents = ZMQ_POLLOUT;
 		zmq_poll(&pollitem,1,10);
 		if (pollitem.revents & ZMQ_POLLIN)
@@ -155,7 +154,7 @@ int RecogizerSocket::StartWork( void )
 			}
 			
 		}
-		zlog_debug(g_server_cat,"---------------------------------");
+		
 		FD_ZERO(&fsRead);  
 		FD_SET(m_socket, &fsRead); 
 		iError = select(m_socket+1, &fsRead,NULL, NULL, &tv);

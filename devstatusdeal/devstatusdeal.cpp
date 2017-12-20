@@ -127,7 +127,7 @@ void *CoreThread(void *args)
            if(AMQP_RESPONSE_LIBRARY_EXCEPTION == res.reply_type &&
               AMQP_STATUS_TIMEOUT == res.library_error)
            {
-               zlog_warn(g_server_cat,"AMQP_STATUS_TIMEOUT");  
+               zlog_debug(g_server_cat,"AMQP_STATUS_TIMEOUT");  
                 continue;
            }
            else
