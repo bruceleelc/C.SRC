@@ -5,7 +5,7 @@ BINDIR = .
 
 CFLAGS:= -g -O0 -D_GNU_SOURCE -DTIXML_USE_STL -I. -fPIC
 LDFLAGS:= -lrt -lpthread -L/usr/lib64/mysql/ -lmysqlclient -L. -lzlog -lrabbitmq -lzmq
-TARGET:= ./bin/GPSDataRecvier
+TARGET:= ./bin/gpslocationdeal
 CC=g++
 SRC := $(wildcard $(SRCDIR)/*.cpp)
 SRC1 := $(wildcard $(SRCINC1)/*.cpp)

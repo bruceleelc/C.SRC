@@ -14,7 +14,6 @@
 #include <amqp_framing.h>
 #include "utils.h"
 #include <stdlib.h>
-#include "Assistant.h"
 #define MAX_PATH 1024
 
 bool		g_isExit1;							
@@ -330,7 +329,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	Assistant::GetCurPath(g_szFilePath,sizeof(g_szFilePath));
+	GetCurPath(g_szFilePath,sizeof(g_szFilePath));
 	rindex(g_szFilePath,'/')[1] = 0;
 	strcat(g_szFilePath,"base_config.xml");
 
