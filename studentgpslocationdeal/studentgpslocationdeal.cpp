@@ -1,6 +1,6 @@
 
 
-#include "gpslocationdeal.h"
+#include "studentgpslocationdeal.h"
 #include "Configure.h"
 
 DBAccess g_dbaccess;

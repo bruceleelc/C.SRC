@@ -1,6 +1,6 @@
 
 
-#include "devstatusdeal.h"
+#include "studentdevstatusdeal.h"
 #include "Configure.h"
 
 DBAccess g_dbaccess;
