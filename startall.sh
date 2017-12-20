@@ -6,7 +6,7 @@ cd /home/abk/gpsalarmdeal/
 ./start_gpsalarmdeal.sh
 cd /home/abk/gpsdata/
 ./start_GPSDataRecvier.sh
-cd /home/abk/gpslocationdeal/bin
+cd /home/abk/gpslocationdeal/
 ./start_gpslocationdeal.sh
 cd /home/abk/studentdevstatusdeal/
 ./start_studentdevstatusdeal.sh
