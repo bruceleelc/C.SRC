@@ -190,7 +190,7 @@ bool DBAccess::GpsInsertDB( void* pData )
 		zlog_error(g_server_cat,"pData NULL !");
 		return true;
 	}
-
+	vector<string> vec = split(pData,',');
  	time_t t;
 	t = atol(vec[1].c_str());
 	struct tm *p;
@@ -198,7 +198,6 @@ bool DBAccess::GpsInsertDB( void* pData )
 	char s[20] = {0};  
     strftime(s, sizeof(s), "%Y-%m-%d %H:%M:%S", p);
 	char strSql[1024] = {0};
-	vector<string> vec = split(pData,',');
 	if (vec[7] == "1")
 	{
 		if (13 > vec.size())
