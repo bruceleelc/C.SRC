@@ -3,6 +3,7 @@
 #ifndef __CONNECTION_POOL_H__
 #define __CONNECTION_POOL_H__
 #include "Configure.h"
+#include "Tool.h"
 #include <pthread.h>
 #include <iostream>
 #include <vector>

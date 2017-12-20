@@ -306,7 +306,7 @@ bool DBAccess::DevStatusInsertDB( void* pData )
 	p=gmtime(&t);
 	char s[20] = {0};  
     strftime(s, sizeof(s), "%Y-%m-%d %H:%M:%S", p);
-	char strSql[1024] = {0};
+
 	
 
 	MYSQL *mysql = NULL;;
