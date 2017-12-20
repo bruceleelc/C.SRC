@@ -32,7 +32,7 @@ amqp_connection_state_t ConnectRmq(amqp_bytes_t consumerexchange,char* routingke
     queuename.len = strlen(g_conf.GetQueueName());
 
     //char const *programid = g_conf.GetProgramID();
-    sprintf(routingkey,"1102.2103.#");
+    sprintf(routingkey,"#.%x.#",DATA_STU_DEV_STATUS);
     amqp_bytes_t amqpkey;
     amqpkey.bytes = routingkey;
     amqpkey.len = strlen(routingkey);

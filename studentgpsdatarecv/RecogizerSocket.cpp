@@ -381,7 +381,9 @@ int RecogizerSocket::StartWork( void )
 			zlog_debug(g_server_cat,"vecsize=%d",vecsize);
 			char code[10] = {0};
 
+			int sendlen = flag-strlen(vec[vecsize-1].c_str())-1;
 			char tmp = check(recvRealMsg,flag-strlen(vec[vecsize-1].c_str()));
+			recvRealMsg[sendlen] = 0x0;
 			sprintf(code,"%d",tmp);
 			if (0 != strcmp(code,vec[vecsize-1].c_str()))
 			{
@@ -427,22 +429,128 @@ int RecogizerSocket::StartWork( void )
 					if(0 == strcmp(vec[0].c_str(),"512"))
 					{
 						header.wMsgType = DATA_STU_GPS_LOCATION;
+						zmq_msg_t msg;
+						
+						int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
+						memcpy((char *)zmq_msg_data(&msg),&header,sizeof(header));
+						memcpy((char *)zmq_msg_data(&msg)+sizeof(header),header.szImei,strlen(header.szImei));
+						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei),",",1);
+						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,msgTmp,strlen(msgTmp));
+						rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
 					}
 					else if(0 == strcmp(vec[0].c_str(),"514"))
 					{
 						header.wMsgType = DATA_STU_GPS_LOCATION;
+						int msgNum = atoi(vec[2].c_str());
+						for (int i = 0,j=3,k=3;i<msgNum,j<vec.size(),k<vec.size();i++,j++)
+						{
+							j+=6;
+							if(0 == strcmp(vec[j].c_str(),"1")
+							{
+								j+=5;
+								char *msgTmp = new char[sendlen];
+								memset(msgTmp,0x0,sendlen);
+								for(int i=0;k<=j;k++)
+								{
+									if(0 == strcmp(vec[k].c_str(),",")
+									{
+										continue;
+									}
+									memcpy(msgTmp+i,vec[k].c_str(),vec[k].size());
+									i+=strlen(vec[k].c_str());
+									msgTmp[i+1] = ',';
+									i++;
+								}
+								msgTmp[i] = 0x0;
+								zmq_msg_t msg;
+						
+								int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
+								memcpy((char *)zmq_msg_data(&msg),&header,sizeof(header));
+								memcpy((char *)zmq_msg_data(&msg)+sizeof(header),header.szImei,strlen(header.szImei));
+								memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei),",",1);
+								memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,msgTmp,strlen(msgTmp));
+								rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
+								delete []msgTmp;
+							}
+							else if(0 == strcmp(vec[j].c_str(),"2")
+							{
+								j+=6;
+								char *msgTmp = new char[sendlen];
+								memset(msgTmp,0x0,sendlen);
+								for(int i=0;k<=j;k++)
+								{
+									if(0 == strcmp(vec[k].c_str(),",")
+									{
+										continue;
+									}
+									memcpy(msgTmp+i,vec[k].c_str(),vec[k].size());
+									i+=strlen(vec[k].c_str());
+									msgTmp[i+1] = ',';
+									i++;
+								}
+								msgTmp[i] = 0x0;
+								zmq_msg_t msg;
+						
+								int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
+								memcpy((char *)zmq_msg_data(&msg),&header,sizeof(header));
+								memcpy((char *)zmq_msg_data(&msg)+sizeof(header),header.szImei,strlen(header.szImei));
+								memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei),",",1);
+								memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,msgTmp,strlen(msgTmp));
+								rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
+								delete []msgTmp;
+							}
+							else if(0 == strcmp(vec[j].c_str(),"3")
+							{
+								j+=2;
+								if(0 == strcmp(vec[j].c_str(),"0")
+								{
+									j+=6;
+								}
+								else
+								{
+									j+=7;
+								}
+								char *msgTmp = new char[sendlen];
+								memset(msgTmp,0x0,sendlen);
+								for(int i=0;k<=j;k++)
+								{
+									if(0 == strcmp(vec[k].c_str(),",")
+									{
+										continue;
+									}
+									memcpy(msgTmp+i,vec[k].c_str(),vec[k].size());
+									i+=strlen(vec[k].c_str());
+									msgTmp[i+1] = ',';
+									i++;
+								}
+								msgTmp[i] = 0x0;
+								zmq_msg_t msg;
+						
+								int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
+								memcpy((char *)zmq_msg_data(&msg),&header,sizeof(header));
+								memcpy((char *)zmq_msg_data(&msg)+sizeof(header),header.szImei,strlen(header.szImei));
+								memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei),",",1);
+								memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,msgTmp,strlen(msgTmp));
+								rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
+								delete []msgTmp;
+							}
+						}
+						
 						
 					}
 					else if(0 == strcmp(vec[0].c_str(),"2"))
 					{
 						header.wMsgType = DATA_STU_DEV_STATUS;
-					}
-					zmq_msg_t msg;
+						zmq_msg_t msg;
 						
-					int rc = zmq_msg_init_size (&msg, sizeof(header)+flag);
-					memcpy((char *)zmq_msg_data(&msg),&header,sizeof(header));
-					memcpy((char *)zmq_msg_data(&msg)+sizeof(header),recvRealMsg,flag);
-					rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
+						int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
+						memcpy((char *)zmq_msg_data(&msg),&header,sizeof(header));
+						memcpy((char *)zmq_msg_data(&msg)+sizeof(header),header.szImei,strlen(header.szImei));
+						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei),",",1);
+						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,msgTmp,strlen(msgTmp));
+						rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
+					}
+					
 				}
 				
 			}

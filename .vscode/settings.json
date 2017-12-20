@@ -7,6 +7,7 @@
         "__split_buffer": "cpp",
         "list": "cpp",
         "string": "cpp",
-        "stdexcept": "cpp"
+        "stdexcept": "cpp",
+        "system_error": "cpp"
     }
 }

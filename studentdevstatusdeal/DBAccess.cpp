@@ -299,7 +299,14 @@ bool DBAccess::DevStatusInsertDB( void* pData )
 		zlog_error(g_server_cat,"pData NULL !");
 		return true;
 	}
-	_DEV_STATUS_DB *pDevStatData = (_DEV_STATUS_DB*)(pData);
+	time_t t;
+	t = atol(vec[1].c_str());
+	struct tm *p;
+	p=gmtime(&t);
+	char s[20] = {0};  
+    strftime(s, sizeof(s), "%Y-%m-%d %H:%M:%S", p);
+	char strSql[1024] = {0};
+	vector<string> vec = split(pData,',');
 
 	MYSQL *mysql = NULL;;
 	while(NULL == mysql)
@@ -311,18 +318,14 @@ bool DBAccess::DevStatusInsertDB( void* pData )
 	
 
 	char strSql[1024] = {0};
-	sprintf(strSql, "update tb_dev_status set heartdate = '%s', insertdate = now(), voltage_level = %d, signal_strength = %d, \
-						  oil_elec_status = %d, gps_status = %d, charge_status = %d, acc_status = %d, protect_status = %d \
-		                  where deviceid = '%s'", 
-						  pDevStatData->m_strDeviceDate,
-						  pDevStatData->m_cVoltagelevel,
-						  pDevStatData->m_cSignalstrength,
-						  pDevStatData->m_nOilelecstat,
-						  pDevStatData->m_nGpsstat,
-						  pDevStatData->m_nChargestat,
-						  pDevStatData->m_nAccstat,
-						  pDevStatData->m_nProtectstat,
-						  pDevStatData->m_strDeviceID
+	sprintf(strSql, "update tb_dev_status_stu set heartdate = '%s', insertdate = now(), battery = %s, signal = '%s', \
+						  tcard = %s, walkCount = %s where deviceid = '%s'", 
+						  s,
+						  vec[2].c_str(),
+						  vec[3].c_str(),
+						  vec[4].c_str(), 
+						  vec[5].c_str(),
+						  vec[0].c_str()
 						  );
 	zlog_info(g_server_cat,"Sql: %s", strSql);
 	res = mysql_query(mysql, strSql);
@@ -342,17 +345,14 @@ bool DBAccess::DevStatusInsertDB( void* pData )
 		if (0 == updataNum)
 		{
 			memset(strSql,0x0,1024);
-			sprintf(strSql, "INSERT INTO tb_dev_status(deviceid, heartdate,insertdate, voltage_level, signal_strength, oil_elec_status, gps_status, charge_status, acc_status, protect_status) \
-								  values ('%s', '%s',now(), %d, %d, %d, %d, %d, %d, %d)", 
-								  pDevStatData->m_strDeviceID,
-								  pDevStatData->m_strDeviceDate,
-								  pDevStatData->m_cVoltagelevel,
-								  pDevStatData->m_cSignalstrength,
-								  pDevStatData->m_nOilelecstat,
-								  pDevStatData->m_nGpsstat,
-								  pDevStatData->m_nChargestat,
-								  pDevStatData->m_nAccstat,
-								  pDevStatData->m_nProtectstat
+			sprintf(strSql, "INSERT INTO tb_dev_status_stu(deviceid, heartdate,insertdate, battery, signal, tcard, walkCount) \
+								  values ('%s', '%s',now(), %s, '%s', %s, %s)", 
+								  vec[0].c_str(),
+								  s,
+								  vec[2].c_str(),
+								  vec[3].c_str(), 
+								  vec[4].c_str(),
+								  vec[5].c_str()
 								  );
 		
 			zlog_info(g_server_cat,"Sql: %s", strSql);
@@ -371,13 +371,13 @@ bool DBAccess::DevStatusInsertDB( void* pData )
 			}
 			else
 			{
-				zlog_info(g_server_cat,"Insert tb_dev_status success");
+				zlog_info(g_server_cat,"Insert tb_dev_status_stu success");
 				retOneConn(mysql);
 			}
 		}
 		else
 		{
-			zlog_info(g_server_cat,"update tb_dev_status success");
+			zlog_info(g_server_cat,"update tb_dev_status_stu success");
 			retOneConn(mysql);
 		}
 		
