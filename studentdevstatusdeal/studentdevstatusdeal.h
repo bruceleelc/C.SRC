@@ -13,6 +13,7 @@
 #include "GetProcessInfo.h"
 #include "Lnxprocdef.h"
 #include "zlog.h"
+#include "DataDef.h"
 
 
 #define PACKET_FLAG         0x5aa5
