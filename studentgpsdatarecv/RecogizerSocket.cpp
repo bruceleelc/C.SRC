@@ -450,6 +450,7 @@ int RecogizerSocket::StartWork( void )
 					else if("514" == vec[0])
 					{
 						header.wMsgType = DATA_STU_GPS_LOCATION;
+						zlog_info(g_server_cat,"vec[2]=%s",vec[2].c_str());
 						int msgNum = atoi(vec[2].c_str());
 						zlog_info(g_server_cat,"msg num:",msgNum);
 						
@@ -472,9 +473,9 @@ int RecogizerSocket::StartWork( void )
 									{
 										continue;
 									}
-									memcpy(msgTmp+i,vec[k].c_str(),vec[k].size());
+									strcat(msgTmp,vec[k].c_str());
 									i+=vec[k].size();
-									msgTmp[i+1] = ',';
+									strcat(msgTmp,",");
 									i++;
 									zlog_debug(g_server_cat,"msgTmp=%s",msgTmp);
 								}
