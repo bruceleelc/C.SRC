@@ -479,7 +479,7 @@ int RecogizerSocket::StartWork( void )
 									i++;
 									zlog_debug(g_server_cat,"msgTmp=%s",msgTmp);
 								}
-								zlog_debug(g_server_cat,"i=%s",i);
+								zlog_debug(g_server_cat,"i=%d",i);
 								msgTmp[i] = 0x0;
 								zlog_debug(g_server_cat,"222msgTmp=%s",msgTmp);
 								zmq_msg_t msg;
