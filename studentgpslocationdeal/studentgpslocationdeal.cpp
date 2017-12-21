@@ -149,7 +149,7 @@ void *CoreThread(void *args)
         zlog_info(g_server_cat, "consume a amqpmsg from rabbitmq server,"
             "routingkey is %s,routingkey size is %d,message size is %d",
             (char *)envelope.routing_key.bytes,iresproutingkeylen,iconsumerlen);
-        hzlog_debug(g_server_cat, prmqconsumer, iconsumerlen);
+        hzlog_debug(g_server_cat, prmqconsumer, iconsumerlen+1);
 
 
         bool bresult = g_dbaccess.GpsInsertDB(prmqconsumer);
