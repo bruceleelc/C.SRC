@@ -219,7 +219,7 @@ bool DBAccess::GpsInsertDB( void* pData )
 		}
 		sprintf(strSql, "INSERT INTO tb_gpsdata_stu(deviceid, gpsdate,insertdate, battery, net_signal, tcard, \
 						  event_flag, event_data, type, latitude, longitude, alt, speed, direction) \
-						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, %f, %f, %s, %f, %s)", 
+						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, %f, %f, %f, %f, %s)", 
 						  vec[0]==","?"":vec[0].c_str(),
 						  s,
 						  vec[2]==","?"-1":vec[2].c_str(),
@@ -230,7 +230,7 @@ bool DBAccess::GpsInsertDB( void* pData )
 						  vec[7]==","?"-1":vec[7].c_str(),
 						  vec[8]==","?999:atof(vec[8].c_str())/1000000,
 						  vec[9]==","?999:atof(vec[9].c_str())/1000000,
-						  vec[10]==","?"999999":vec[10].c_str(),
+						  vec[10]==","?999999:atof(vec[10].c_str())/1000000,
 						  vec[11]==","?-1:atof(vec[11].c_str())/10000000,
 						  vec[12]==","?"-1":vec[12].c_str()
 						  );
