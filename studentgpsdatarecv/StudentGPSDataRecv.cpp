@@ -229,7 +229,7 @@ void *MsgDealThread (void *pContext)
 		
 		if (pollitems [2].revents & ZMQ_POLLIN)
 		{
-			zlog_info(g_server_cat,"recv rsp .......");
+			zlog_info(g_server_cat,"recv msg from thread work .......");
 			zmq_msg_t msg;
 			int rc = zmq_msg_init (&msg);
 			rc = zmq_recvmsg (skGpsData, &msg, 0);
