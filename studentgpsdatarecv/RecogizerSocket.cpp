@@ -451,27 +451,36 @@ int RecogizerSocket::StartWork( void )
 					{
 						header.wMsgType = DATA_STU_GPS_LOCATION;
 						int msgNum = atoi(vec[2].c_str());
+						zlog_info(g_server_cat,"msg num:",msgNum);
+						
 						for (int m = 0,j=3,k=3;m<msgNum,j<vec.size(),k<vec.size();m++,j++)
 						{
+							zlog_debug(g_server_cat,"1111,j=%d;k=%d",j,k);
 							j+=6;
 							if("1" == vec[j])
 							{
+								zlog_debug(g_server_cat,"2222,j=%d;k=%d",j,k);
 								j+=5;
 								char *msgTmp = new char[sendlen];
 								memset(msgTmp,0x0,sendlen);
 								int i=0;
-								for(;k<=j;k++)
+								for(;k<=j,j<vec.size();k++)
 								{
+									zlog_debug(g_server_cat,"33333,j=%d;k=%d",j,k);
+									zlog_debug(g_server_cat,"44444,vec[k]=%s",vec[k].c_str());
 									if("," == vec[k])
 									{
 										continue;
 									}
 									memcpy(msgTmp+i,vec[k].c_str(),vec[k].size());
-									i+=strlen(vec[k].c_str());
+									i+=vec[k].size();
 									msgTmp[i+1] = ',';
 									i++;
+									zlog_debug(g_server_cat,"msgTmp=%s",msgTmp);
 								}
+								zlog_debug(g_server_cat,"i=%s",i);
 								msgTmp[i] = 0x0;
+								zlog_debug(g_server_cat,"222msgTmp=%s",msgTmp);
 								zmq_msg_t msg;
 						
 								int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
