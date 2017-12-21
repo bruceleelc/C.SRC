@@ -307,6 +307,7 @@ bool DBAccess::DevStatusInsertDB( void* pData )
 	}
 	time_t t;
 	t = atol(vec[1].c_str());
+	t+=8*3600;
 	struct tm *p;
 	p=gmtime(&t);
 	char s[20] = {0};  
