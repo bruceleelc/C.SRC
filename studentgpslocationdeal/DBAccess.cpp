@@ -218,7 +218,7 @@ bool DBAccess::GpsInsertDB( void* pData )
 						  vec[7]==","?"-1":vec[7].c_str(),
 						  vec[8]==","?999:atof(vec[8].c_str())/1000000,
 						  vec[9]==","?999:atof(vec[9].c_str())/1000000,
-						  vec[10]==","?999999:vec[10].c_str(),
+						  vec[10]==","?"999999":vec[10].c_str(),
 						  vec[11]==","?-1:atof(vec[11].c_str())/10000000,
 						  vec[12]==","?"-1":vec[12].c_str()
 						  );
@@ -307,8 +307,8 @@ bool DBAccess::GpsInsertDB( void* pData )
 						  vec[11]==","?"":vec[11].c_str(),
 						  vec[12]==","?"":vec[12].c_str(),
 						  vec[13]==","?"":vec[13].c_str(),
-						  vec[14]==","?999:vec[14].c_str(),
-						  vec[15]==","?999:vec[15].c_str(),
+						  vec[14]==","?"999":vec[14].c_str(),
+						  vec[15]==","?"999":vec[15].c_str(),
 						  vec[16]==","?"":vec[16].c_str()
 						  );
 		}
