@@ -198,6 +198,12 @@ bool DBAccess::GpsInsertDB( void* pData )
 	char s[20] = {0};  
     strftime(s, sizeof(s), "%Y-%m-%d %H:%M:%S", p);
 	char strSql[1024] = {0};
+	zlog_debug(g_server_cat,"vec:");
+	for(int i=0;i<vec.size();i++)
+	{
+		zlog_error(g_server_cat,"vec[%d]=%s",i,vec[i].c_str());
+	}
+	
 	if (vec[7] == "1")
 	{
 		if (13 > vec.size())
@@ -313,6 +319,11 @@ bool DBAccess::GpsInsertDB( void* pData )
 						  );
 		}
 		
+	}
+	else
+	{
+		zlog_error(g_server_cat,"msg error :%s", pData);
+		return true;
 	}
 
 	zlog_info(g_server_cat,"Sql: %s", strSql);
