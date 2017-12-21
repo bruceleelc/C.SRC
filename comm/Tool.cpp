@@ -561,14 +561,13 @@ vector<string> split(char *src,char delimiters)
 	{
 		if (*p == delimiters)
 		{
-			
+
 			
 			string tmp(ptmp,p);
 			vec.push_back(tmp);
 			
 			ptmp = p+1;
-			
-			if (*ptmp == delimiters)
+			while(*ptmp == delimiters)
 			{
 				vec.push_back(",");
 				ptmp++;
