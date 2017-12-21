@@ -465,7 +465,7 @@ int RecogizerSocket::StartWork( void )
 								char *msgTmp = new char[sendlen];
 								memset(msgTmp,0x0,sendlen);
 								int i=0;
-								for(;k<=j,j<vec.size();k++)
+								for(;k<=j;k++)
 								{
 									zlog_debug(g_server_cat,"33333,j=%d;k=%d",j,k);
 									zlog_debug(g_server_cat,"44444,vec[k]=%s",vec[k].c_str());
