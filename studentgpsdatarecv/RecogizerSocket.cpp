@@ -437,7 +437,11 @@ int RecogizerSocket::StartWork( void )
 						memcpy((char *)zmq_msg_data(&msg)+sizeof(header),header.szImei,strlen(header.szImei));
 						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei),",",1);
 						memcpy((char *)zmq_msg_data(&msg)+sizeof(header)+strlen(header.szImei)+1,recvRealMsg+vec[0].size()+vec[1].size()+2,sendlen);
-						zlog_info(g_server_cat,"send msg to MsgDealThread:%s",(char *)zmq_msg_data(&msg));
+						zlog_info(g_server_cat,"send msg to MsgDealThread:");
+						hzlog_debug(g_server_cat,(char *)zmq_msg_data(&msg),sizeof(header)+strlen(header.szImei)+1+sendlen);
+						zlog_debug(g_server_cat,"recvRealMsg1111111:");
+						hzlog_debug(g_server_cat,recvRealMsg+vec[0].size()+vec[1].size()+2,sendlen);
+						hzlog_debug(g_server_cat,(char *)zmq_msg_data(&msg),sizeof(header)+strlen(header.szImei)+1+sendlen);
 						rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
 					}
 					else if("514" == vec[0])
