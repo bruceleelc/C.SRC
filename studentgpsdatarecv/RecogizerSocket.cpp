@@ -383,7 +383,7 @@ int RecogizerSocket::StartWork( void )
 
 			int sendlen = flag-vec[vecsize-1].size()-3-vec[0].size()-vec[1].size();
 			char tmp = check(recvRealMsg,flag-strlen(vec[vecsize-1].c_str()));
-			recvRealMsg[sendlen] = 0x0;
+			//recvRealMsg[sendlen] = 0x0;
 			sprintf(code,"%d",tmp);
 			zlog_debug(g_server_cat,"recvRealMsg222[%d]:",flag);
 			hzlog_debug(g_server_cat,recvRealMsg,flag);
