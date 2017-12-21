@@ -387,7 +387,7 @@ int RecogizerSocket::StartWork( void )
 			sprintf(code,"%d",tmp);
 			zlog_debug(g_server_cat,"recvRealMsg222[%d]:",flag);
 			hzlog_debug(g_server_cat,recvRealMsg,flag);
-			if (code == vec[vecsize-1])
+			if (code != vec[vecsize-1])
 			{
 				zlog_warn(g_server_cat,"code check error:code = %s,src code = %s",code,vec[vecsize-1].c_str());
 			}
