@@ -452,9 +452,9 @@ int RecogizerSocket::StartWork( void )
 						header.wMsgType = DATA_STU_GPS_LOCATION;
 						zlog_info(g_server_cat,"vec[2]=%s",vec[2].c_str());
 						int msgNum = atoi(vec[2].c_str());
-						zlog_info(g_server_cat,"msg num:",msgNum);
+						zlog_info(g_server_cat,"msg num:%d",msgNum);
 						
-						for (int m = 0,j=3,k=3;m<msgNum,j<vec.size(),k<vec.size();m++,j++)
+						for (int m = 0,j=3,k=3;m<msgNum&&j<vec.size()-1&&k<vec.size()-1;m++,j++)
 						{
 							zlog_debug(g_server_cat,"1111,j=%d;k=%d",j,k);
 							j+=6;
@@ -504,9 +504,9 @@ int RecogizerSocket::StartWork( void )
 									{
 										continue;
 									}
-									memcpy(msgTmp+i,vec[k].c_str(),vec[k].size());
-									i+=strlen(vec[k].c_str());
-									msgTmp[i+1] = ',';
+									strcat(msgTmp,vec[k].c_str());
+									i+=vec[k].size();
+									strcat(msgTmp,",");
 									i++;
 								}
 								msgTmp[i] = 0x0;
@@ -540,9 +540,9 @@ int RecogizerSocket::StartWork( void )
 									{
 										continue;
 									}
-									memcpy(msgTmp+i,vec[k].c_str(),vec[k].size());
-									i+=strlen(vec[k].c_str());
-									msgTmp[i+1] = ',';
+									strcat(msgTmp,vec[k].c_str());
+									i+=vec[k].size();
+									strcat(msgTmp,",");
 									i++;
 								}
 								msgTmp[i] = 0x0;
