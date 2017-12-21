@@ -582,6 +582,10 @@ vector<string> split(char *src,char delimiters)
 		}
 		
 	} 
+	if ((*ptmp)!='\0')
+	{
+		vec.push_back(ptmp);
+	}
 	return vec;
 }
 
