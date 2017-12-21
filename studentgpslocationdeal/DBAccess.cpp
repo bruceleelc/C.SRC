@@ -210,20 +210,20 @@ bool DBAccess::GpsInsertDB( void* pData )
 		                  mmac, msignal, mssid, mac, wifi_signal, ssid, serverip, cdma, network, sid, \
 						  nid, bid, lng, lat, jizhan_signal, mcc, mnc, lac, cellid) \
 						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, %f, %f, %s, %f, %s, \
-						  ' ', ' ', ' ', ' ', ' ', ' ', ' ', -1, ' ', ' ', ' ', ' ',9999,9999, ' ', ' ', -1, ' ', ' ')", 
-						  vec[0].c_str(),
+						  ' ', ' ', ' ', ' ', ' ', ' ', ' ', -1, ' ', ' ', ' ', ' ',999,999, ' ', ' ', -1, ' ', ' ')", 
+						  vec[0]==","?" ":vec[0].c_str(),
 						  s,
-						  vec[2].c_str(),
-						  vec[3].c_str(), 
-						  vec[4].c_str(),
-						  vec[5].c_str(),
-						  vec[6].c_str(),
-						  vec[7].c_str(),
-						  atof(vec[8].c_str())/1000000,
-						  atof(vec[9].c_str())/1000000,
-						  vec[10].c_str(),
-						  atof(vec[11].c_str())/10000000,
-						  vec[12].c_str()
+						  vec[2]==","?" ":vec[0].c_str(),
+						  vec[3]==","?" ":vec[0].c_str(), 
+						  vec[4]==","?" ":vec[0].c_str(),
+						  vec[5]==","?" ":vec[0].c_str(),
+						  vec[6]==","?" ":vec[0].c_str(),
+						  vec[7]==","?" ":vec[0].c_str(),
+						  vec[8]==","?999:atof(vec[8].c_str())/1000000,
+						  vec[9]==","?999:atof(vec[9].c_str())/1000000,
+						  vec[10]==","?" ":vec[0].c_str(),
+						  vec[11]==","?-1:atof(vec[11].c_str())/10000000,
+						  vec[12]==","?" ":vec[0].c_str()
 						  );
 	}
 	else if (vec[7] == "2")
@@ -237,22 +237,22 @@ bool DBAccess::GpsInsertDB( void* pData )
 						  event_flag, event_data, type, latitude, longitude, alt, speed, direction,\
 		                  mmac, msignal, mssid, mac, wifi_signal, ssid, serverip, cdma, network, sid, \
 						  nid, bid, lng, lat, jizhan_signal, mcc, mnc, lac, cellid) \
-						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, 9999, 9999, 999999, -1, 9999, \
-						  '%s', '%s', '%s','%s', '%s', '%s', ' ', -1, ' ', ' ', ' ', ' ',9999, 9999, ' ', ' ', -1, ' ', ' ')", 
-						  vec[0].c_str(),
+						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, 999, 999, 999999, -1, 999, \
+						  '%s', '%s', '%s','%s', '%s', '%s', ' ', -1, ' ', ' ', ' ', ' ',999, 999, ' ', ' ', -1, ' ', ' ')", 
+						  vec[0]==","?" ":vec[0].c_str(),
 						  s,
-						  vec[2].c_str(),
-						  vec[3].c_str(), 
-						  vec[4].c_str(),
-						  vec[5].c_str(),
-						  vec[6].c_str(),
-						  vec[7].c_str(),
-						  vec[8].c_str(),
-						  vec[9].c_str(),
-						  vec[10].c_str(),
-						  vec[11].c_str(),
-						  vec[12].c_str(),
-						  vec[13].c_str()
+						  vec[2]==","?" ":vec[2].c_str(),
+						  vec[3]==","?" ":vec[3].c_str(), 
+						  vec[4]==","?" ":vec[4].c_str(),
+						  vec[5]==","?" ":vec[5].c_str(),
+						  vec[6]==","?" ":vec[6].c_str(),
+						  vec[7]==","?" ":vec[7].c_str(),
+						  vec[8]==","?" ":vec[8].c_str(),
+						  vec[9]==","?" ":vec[9].c_str(),
+						  vec[10]==","?" ":vec[10].c_str(),
+						  vec[11]==","?" ":vec[11].c_str(),
+						  vec[12]==","?" ":vec[12].c_str(),
+						  vec[13]==","?" ":vec[13].c_str()
 						  );
 	}
 	else if (vec[7] == "3")
@@ -268,24 +268,24 @@ bool DBAccess::GpsInsertDB( void* pData )
 						  event_flag, event_data, type, latitude, longitude, alt, speed, direction,\
 		                  mmac, msignal, mssid, mac, wifi_signal, ssid, serverip, cdma, network, sid, \
 						  nid, bid, lng, lat, jizhan_signal, mcc, mnc, lac, cellid) \
-						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, 9999, 9999, 999999, -1, 9999, \
-						  ' ', ' ', ' ',' ', ' ', ' ', '%s', %s, '%s', ' ', ' ', ' ',9999, 9999, '%s', '%s', %s, '%s', '%s')", 
-						  vec[0].c_str(),
+						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, 999, 999, 999999, -1, 999, \
+						  ' ', ' ', ' ',' ', ' ', ' ', '%s', %s, '%s', ' ', ' ', ' ',999, 999, '%s', '%s', %s, '%s', '%s')", 
+						  vec[0]==","?" ":vec[0].c_str(),
 						  s,
-						  vec[2].c_str(),
-						  vec[3].c_str(), 
-						  vec[4].c_str(),
-						  vec[5].c_str(),
-						  vec[6].c_str(),
-						  vec[7].c_str(),
-						  vec[8].c_str(),
-						  vec[9].c_str(),
-						  vec[10].c_str(),
-						  vec[15].c_str(),
-						  vec[11].c_str(),
-						  vec[12].c_str(),
-						  vec[13].c_str(),
-						  vec[14].c_str()
+						  vec[2]==","?" ":vec[2].c_str(),
+						  vec[3]==","?" ":vec[3].c_str(), 
+						  vec[4]==","?" ":vec[4].c_str(),
+						  vec[5]==","?" ":vec[5].c_str(),
+						  vec[6]==","?" ":vec[6].c_str(),
+						  vec[7]==","?" ":vec[7].c_str(),
+						  vec[8]==","?" ":vec[8].c_str(),
+						  vec[9]==","?" ":vec[9].c_str(),
+						  vec[10]==","?" ":vec[10].c_str(),
+						  vec[15]==","?" ":vec[15].c_str(),
+						  vec[11]==","?" ":vec[11].c_str(),
+						  vec[12]==","?" ":vec[12].c_str(),
+						  vec[13]==","?" ":vec[13].c_str(),
+						  vec[14]==","?" ":vec[14].c_str()
 						  );
 		}
 		else
@@ -299,25 +299,25 @@ bool DBAccess::GpsInsertDB( void* pData )
 						  event_flag, event_data, type, latitude, longitude, alt, speed, direction,\
 		                  mmac, msignal, mssid, mac, wifi_signal, ssid, serverip, cdma, network, sid, \
 						  nid, bid, lng, lat, jizhan_signal, mcc, mnc, lac, cellid) \
-						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, 9999, 9999, 999999, -1, 9999, \
+						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, 999, 999, 999999, -1, 999, \
 						  ' ', ' ', ' ',' ', ' ', ' ', '%s', %s, '%s', '%s', '%s', '%s', %s, %s, '%s', ' ', -1, ' ', ' ')", 
-						  vec[0].c_str(),
+						  vec[0]==","?" ":vec[0].c_str(),
 						  s,
-						  vec[2].c_str(),
-						  vec[3].c_str(), 
-						  vec[4].c_str(),
-						  vec[5].c_str(),
-						  vec[6].c_str(),
-						  vec[7].c_str(),
-						  vec[8].c_str(),
-						  vec[9].c_str(),
-						  vec[10].c_str(),
-						  vec[11].c_str(),
-						  vec[12].c_str(),
-						  vec[13].c_str(),
-						  vec[14].c_str(),
-						  vec[15].c_str(),
-						  vec[16].c_str()
+						  vec[2]==","?" ":vec[2].c_str(),
+						  vec[3]==","?" ":vec[3].c_str(), 
+						  vec[4]==","?" ":vec[4].c_str(),
+						  vec[5]==","?" ":vec[5].c_str(),
+						  vec[6]==","?" ":vec[6].c_str(),
+						  vec[7]==","?" ":vec[7].c_str(),
+						  vec[8]==","?" ":vec[8].c_str(),
+						  vec[9]==","?" ":vec[9].c_str(),
+						  vec[10]==","?" ":vec[10].c_str(),
+						  vec[11]==","?" ":vec[11].c_str(),
+						  vec[12]==","?" ":vec[12].c_str(),
+						  vec[13]==","?" ":vec[13].c_str(),
+						  vec[14]==","?" ":vec[14].c_str(),
+						  vec[15]==","?" ":vec[15].c_str(),
+						  vec[16]==","?" ":vec[16].c_str()
 						  );
 		}
 		
