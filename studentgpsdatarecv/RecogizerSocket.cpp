@@ -385,6 +385,8 @@ int RecogizerSocket::StartWork( void )
 			char tmp = check(recvRealMsg,flag-strlen(vec[vecsize-1].c_str()));
 			recvRealMsg[sendlen] = 0x0;
 			sprintf(code,"%d",tmp);
+			zlog_debug(g_server_cat,"recvRealMsg222[%d]:",flag);
+			hzlog_debug(g_server_cat,recvRealMsg,flag);
 			if (code == vec[vecsize-1])
 			{
 				zlog_warn(g_server_cat,"code check error:code = %s,src code = %s",code,vec[vecsize-1].c_str());
@@ -428,6 +430,8 @@ int RecogizerSocket::StartWork( void )
 				{
 					if("512" == vec[0])
 					{
+						zlog_debug(g_server_cat,"recvRealMsg333[%d]:",flag);
+						hzlog_debug(g_server_cat,recvRealMsg,flag);
 						header.wMsgType = DATA_STU_GPS_LOCATION;
 						
 						zmq_msg_t msg;
@@ -441,7 +445,6 @@ int RecogizerSocket::StartWork( void )
 						hzlog_debug(g_server_cat,(char *)zmq_msg_data(&msg),sizeof(header)+strlen(header.szImei)+1+sendlen);
 						zlog_debug(g_server_cat,"recvRealMsg1111111:");
 						hzlog_debug(g_server_cat,recvRealMsg+vec[0].size()+vec[1].size()+2,sendlen);
-						hzlog_debug(g_server_cat,(char *)zmq_msg_data(&msg),sizeof(header)+strlen(header.szImei)+1+sendlen);
 						rc = zmq_sendmsg(m_pGpsSender,&msg,ZMQ_NOBLOCK);
 					}
 					else if("514" == vec[0])
