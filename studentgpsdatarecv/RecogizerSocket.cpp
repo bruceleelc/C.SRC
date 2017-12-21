@@ -481,7 +481,7 @@ int RecogizerSocket::StartWork( void )
 									zlog_debug(g_server_cat,"msgTmp=%s",msgTmp);
 								}
 								zlog_debug(g_server_cat,"i=%d",i);
-								msgTmp[i] = 0x0;
+								msgTmp[i-1] = 0x0;
 								zlog_debug(g_server_cat,"222msgTmp=%s",msgTmp);
 								zmq_msg_t msg;
 						
@@ -511,7 +511,7 @@ int RecogizerSocket::StartWork( void )
 									strcat(msgTmp,",");
 									i++;
 								}
-								msgTmp[i] = 0x0;
+								msgTmp[i-1] = 0x0;
 								zmq_msg_t msg;
 						
 								int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
@@ -547,7 +547,7 @@ int RecogizerSocket::StartWork( void )
 									strcat(msgTmp,",");
 									i++;
 								}
-								msgTmp[i] = 0x0;
+								msgTmp[i-1] = 0x0;
 								zmq_msg_t msg;
 						
 								int rc = zmq_msg_init_size (&msg, sizeof(header)+strlen(header.szImei)+1+strlen(msgTmp));
