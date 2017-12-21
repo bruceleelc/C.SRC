@@ -191,6 +191,11 @@ bool DBAccess::GpsInsertDB( void* pData )
 		return true;
 	}
 	vector<string> vec = split((char *)pData,',');
+	if (7 > vec.size())
+	{
+		zlog_error(g_server_cat,"msg error :%s", pData);
+		return true;
+	}
  	time_t t;
 	t = atol(vec[1].c_str());
 	struct tm *p;

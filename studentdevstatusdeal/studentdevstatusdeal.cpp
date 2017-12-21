@@ -141,6 +141,7 @@ void *CoreThread(void *args)
 
         unsigned int iconsumerlen = envelope.message.body.len;
         char *prmqconsumer = new char[iconsumerlen+1];
+        memset(prmqconsumer,0x0,iconsumerlen+1);
         memcpy(prmqconsumer,envelope.message.body.bytes,iconsumerlen);
 
         int iresproutingkeylen = envelope.routing_key.len;
@@ -150,14 +151,6 @@ void *CoreThread(void *args)
             (char *)envelope.routing_key.bytes,iresproutingkeylen,iconsumerlen);
         hzlog_debug(g_server_cat, prmqconsumer, iconsumerlen);
 
-        if(sizeof(_DEV_STATUS_DB) > iconsumerlen)
-        {
-           zlog_info(g_server_cat,"consume a small msg,size is %d",iconsumerlen);
-           delete []prmqconsumer;
-           amqp_basic_ack(conn,1,envelope.delivery_tag,0);
-           amqp_destroy_envelope(&envelope);
-           continue;
-        }
 
         
 

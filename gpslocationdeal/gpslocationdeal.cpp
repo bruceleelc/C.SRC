@@ -141,6 +141,7 @@ void *CoreThread(void *args)
 
         unsigned int iconsumerlen = envelope.message.body.len;
         char *prmqconsumer = new char[iconsumerlen+1];
+        memset(prmqconsumer,0x0,iconsumerlen+1);
         memcpy(prmqconsumer,envelope.message.body.bytes,iconsumerlen);
 
         int iresproutingkeylen = envelope.routing_key.len;
