@@ -472,6 +472,10 @@ int RecogizerSocket::StartWork( void )
 									
 									strcat(msgTmp,vec[k].c_str());
 									i+=vec[k].size();
+									if("," == vec[k])
+									{
+										continue;
+									}
 									strcat(msgTmp,",");
 									i++;
 									zlog_debug(g_server_cat,"msgTmp=%s",msgTmp);
@@ -497,9 +501,13 @@ int RecogizerSocket::StartWork( void )
 								int i=0;
 								for(;k<=j;k++)
 								{
-								
+									
 									strcat(msgTmp,vec[k].c_str());
 									i+=vec[k].size();
+									if("," == vec[k])
+									{
+										continue;
+									}
 									strcat(msgTmp,",");
 									i++;
 								}
@@ -532,6 +540,10 @@ int RecogizerSocket::StartWork( void )
 								{
 									strcat(msgTmp,vec[k].c_str());
 									i+=vec[k].size();
+									if("," == vec[k])
+									{
+										continue;
+									}
 									strcat(msgTmp,",");
 									i++;
 								}
