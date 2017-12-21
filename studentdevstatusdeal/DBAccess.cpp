@@ -319,7 +319,7 @@ bool DBAccess::DevStatusInsertDB( void* pData )
 	
 
 	char strSql[1024] = {0};
-	sprintf(strSql, "update tb_dev_status_stu set heartdate = '%s', insertdate = now(), battery = %s, signal = '%s', \
+	sprintf(strSql, "update tb_dev_status_stu set heartdate = '%s', insertdate = now(), battery = %s, net_signal = '%s', \
 						  tcard = %s, walkCount = %s where deviceid = '%s'", 
 						  s,
 						  vec[2].c_str(),
@@ -346,7 +346,7 @@ bool DBAccess::DevStatusInsertDB( void* pData )
 		if (0 == updataNum)
 		{
 			memset(strSql,0x0,1024);
-			sprintf(strSql, "INSERT INTO tb_dev_status_stu(deviceid, heartdate,insertdate, battery, signal, tcard, walkCount) \
+			sprintf(strSql, "INSERT INTO tb_dev_status_stu(deviceid, heartdate,insertdate, battery, net_signal, tcard, walkCount) \
 								  values ('%s', '%s',now(), %s, '%s', %s, %s)", 
 								  vec[0].c_str(),
 								  s,

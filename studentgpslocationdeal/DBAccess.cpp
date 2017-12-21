@@ -205,8 +205,8 @@ bool DBAccess::GpsInsertDB( void* pData )
 			zlog_error(g_server_cat,"msg error :%s", pData);
 			return true;
 		}
-		sprintf(strSql, "INSERT INTO tb_gpsdata_stu(deviceid, gpsdate,insertdate, battery, signal, tcard, \
-						  event, event_data, type, latitude, longitude, alt, speed, direction,\
+		sprintf(strSql, "INSERT INTO tb_gpsdata_stu(deviceid, gpsdate,insertdate, battery, net_signal, tcard, \
+						  event_flag, event_data, type, latitude, longitude, alt, speed, direction,\
 		                  mmac, msignal, mssid, mac, wifi_signal, ssid, serverip, cdma, network, sid, \
 						  nid, bid, lng, lat, jizhan_signal, mcc, mnc, lac, cellid) \
 						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, %f, %f, %s, %f, %s, \
@@ -233,8 +233,8 @@ bool DBAccess::GpsInsertDB( void* pData )
 			zlog_error(g_server_cat,"msg error :%s", pData);
 			return true;
 		}
-		sprintf(strSql, "INSERT INTO tb_gpsdata_stu(deviceid, gpsdate,insertdate, battery, signal, tcard, \
-						  event, event_data, type, latitude, longitude, alt, speed, direction,\
+		sprintf(strSql, "INSERT INTO tb_gpsdata_stu(deviceid, gpsdate,insertdate, battery, net_signal, tcard, \
+						  event_flag, event_data, type, latitude, longitude, alt, speed, direction,\
 		                  mmac, msignal, mssid, mac, wifi_signal, ssid, serverip, cdma, network, sid, \
 						  nid, bid, lng, lat, jizhan_signal, mcc, mnc, lac, cellid) \
 						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, 9999, 9999, 999999, -1, 9999, \
@@ -264,8 +264,8 @@ bool DBAccess::GpsInsertDB( void* pData )
 				zlog_error(g_server_cat,"msg error :%s", pData);
 				return true;
 			}
-			sprintf(strSql, "INSERT INTO tb_gpsdata_stu(deviceid, gpsdate,insertdate, battery, signal, tcard, \
-						  event, event_data, type, latitude, longitude, alt, speed, direction,\
+			sprintf(strSql, "INSERT INTO tb_gpsdata_stu(deviceid, gpsdate,insertdate, battery, net_signal, tcard, \
+						  event_flag, event_data, type, latitude, longitude, alt, speed, direction,\
 		                  mmac, msignal, mssid, mac, wifi_signal, ssid, serverip, cdma, network, sid, \
 						  nid, bid, lng, lat, jizhan_signal, mcc, mnc, lac, cellid) \
 						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, 9999, 9999, 999999, -1, 9999, \
@@ -295,8 +295,8 @@ bool DBAccess::GpsInsertDB( void* pData )
 				zlog_error(g_server_cat,"msg error :%s", pData);
 				return true;
 			}
-			sprintf(strSql, "INSERT INTO tb_gpsdata_stu(deviceid, gpsdate,insertdate, battery, signal, tcard, \
-						  event, event_data, type, latitude, longitude, alt, speed, direction,\
+			sprintf(strSql, "INSERT INTO tb_gpsdata_stu(deviceid, gpsdate,insertdate, battery, net_signal, tcard, \
+						  event_flag, event_data, type, latitude, longitude, alt, speed, direction,\
 		                  mmac, msignal, mssid, mac, wifi_signal, ssid, serverip, cdma, network, sid, \
 						  nid, bid, lng, lat, jizhan_signal, mcc, mnc, lac, cellid) \
 						  values ('%s', '%s',now(), %s, '%s', %s, %s, '%s', %s, 9999, 9999, 999999, -1, 9999, \
