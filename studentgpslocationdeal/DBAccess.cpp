@@ -213,17 +213,17 @@ bool DBAccess::GpsInsertDB( void* pData )
 						  ' ', ' ', ' ', ' ', ' ', ' ', ' ', -1, ' ', ' ', ' ', ' ',999,999, ' ', ' ', -1, ' ', ' ')", 
 						  vec[0]==","?" ":vec[0].c_str(),
 						  s,
-						  vec[2]==","?" ":vec[0].c_str(),
-						  vec[3]==","?" ":vec[0].c_str(), 
-						  vec[4]==","?" ":vec[0].c_str(),
-						  vec[5]==","?" ":vec[0].c_str(),
-						  vec[6]==","?" ":vec[0].c_str(),
-						  vec[7]==","?" ":vec[0].c_str(),
+						  vec[2]==","?" ":vec[2].c_str(),
+						  vec[3]==","?" ":vec[3].c_str(), 
+						  vec[4]==","?" ":vec[4].c_str(),
+						  vec[5]==","?" ":vec[5].c_str(),
+						  vec[6]==","?" ":vec[6].c_str(),
+						  vec[7]==","?" ":vec[7].c_str(),
 						  vec[8]==","?999:atof(vec[8].c_str())/1000000,
 						  vec[9]==","?999:atof(vec[9].c_str())/1000000,
-						  vec[10]==","?" ":vec[0].c_str(),
+						  vec[10]==","?" ":vec[10].c_str(),
 						  vec[11]==","?-1:atof(vec[11].c_str())/10000000,
-						  vec[12]==","?" ":vec[0].c_str()
+						  vec[12]==","?" ":vec[12].c_str()
 						  );
 	}
 	else if (vec[7] == "2")
