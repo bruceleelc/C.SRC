@@ -258,13 +258,27 @@ int RecogizerSocket::StartWork( void )
 			rc = zmq_recvmsg (m_pPubSender, &msg, 0);
 
 			zlog_info(g_server_cat,"cmd = %s",(char *)zmq_msg_data(&msg));
-			
-			iError = Send2Dev((char *)zmq_msg_data(&msg),zmq_msg_size(&msg));				
-			if (-1 == iError)												
+			char sendCmd[100] = {0};
+			vector<string> vec = split((char *)zmq_msg_data(&msg),',')
+			if(2 < vec.size())
 			{
-				iRet = -2;
-				break;
+				strcat(sendCmd,(char *)zmq_msg_data(&msg));
+				char tmp = check((char *)zmq_msg_data(&msg)+vec[0].size()+vec[1].size()+1,zmq_msg_size(&msg)-vec[0].size()-vec[1].size()-1);
+				sprintf(sendCmd,"~%s%d~",(char *)zmq_msg_data(&msg),tmp);
+				
+				iError = Send2Dev(sendCmd,strlen(sendCmd));				
+				if (-1 == iError)												
+				{
+					iRet = -2;
+					break;
+				}
+
 			}
+			else
+			{
+				zlog_error(g_server_cat,"cmd error!");
+			}
+			
 			
 		}
 		//zlog_debug(g_server_cat,"---------------------------------");
