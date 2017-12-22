@@ -259,9 +259,7 @@ int RecogizerSocket::StartWork( void )
 
 			zlog_info(g_server_cat,"cmd = %s",(char *)zmq_msg_data(&msg));
 			
-			unsigned char sndData[1024]={0};
-			vehParser.SetCMDData((char *)zmq_msg_data(&msg),zmq_msg_size(&msg),sndData);
-			iError = Send2Dev(sndData,zmq_msg_size(&msg)+17);				
+			iError = Send2Dev((char *)zmq_msg_data(&msg),zmq_msg_size(&msg));				
 			if (-1 == iError)												
 			{
 				iRet = -2;
