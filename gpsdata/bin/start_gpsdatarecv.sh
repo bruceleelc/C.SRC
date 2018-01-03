@@ -3,6 +3,6 @@
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../lib
 
 
-echo "Starting GPSDataRecvier..."
-nohup ./GPSDataRecvier &
+echo "Starting gpsdatarecv..."
+nohup ./gpsdatarecv &
 echo "Done."

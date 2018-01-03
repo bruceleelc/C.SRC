@@ -10,7 +10,7 @@
 #include "cJSON.h"
 
 
-#define STR_APPNAME	"GPSDataRecvier" 
+#define STR_APPNAME	"gpsdatarecv" 
 
 #define STR_APPVER	"v2.0"
 #define STR_APPDATE "2013-07-03 15:00"

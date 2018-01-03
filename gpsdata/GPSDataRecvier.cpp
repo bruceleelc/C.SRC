@@ -344,7 +344,7 @@ int main(int argc, char* argv[])
     }
 
 	rindex(g_szFilePath,'/')[1] = 0;
-	strcat(g_szFilePath,"GPSDataRecvier_log.conf");
+	strcat(g_szFilePath,"gpsdatarecv_log.conf");
 	int ret = zlog_init(g_szFilePath);	
 	if (ret != 0) 
 	{
